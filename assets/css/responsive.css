@@ -1,0 +1,280 @@
+/**
+ * SYSTEQ INDIA - Master Responsive Stylesheet
+ * Breakpoints:
+ * - Large Desktop: 1440px and above
+ * - Laptop: 1024px - 1366px
+ * - Tablet: 768px - 1023px
+ * - Mobile: 320px - 767px
+ */
+
+/* ==========================================================================
+   GLOBAL RESPONSIVENESS BASE
+   ========================================================================== */
+html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ==========================================================================
+   1. LARGE DESKTOP (1440px and above)
+   ========================================================================== */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1360px;
+    }
+
+    .hero-heading-exact {
+        font-size: 3.85rem;
+        line-height: 1.15;
+    }
+
+    .hero-desc-exact {
+        font-size: 1.25rem;
+    }
+
+    .stat-pill-val {
+        font-size: 2.75rem;
+    }
+
+    .service-card {
+        min-height: 440px;
+    }
+}
+
+/* ==========================================================================
+   2. LAPTOP (1024px to 1366px)
+   ========================================================================== */
+@media (max-width: 1366px) and (min-width: 1024px) {
+    .hero-heading-exact {
+        font-size: 3rem;
+    }
+
+    .stat-pill-val {
+        font-size: 2.2rem;
+    }
+
+    .process-timeline-track {
+        top: 55px;
+    }
+}
+
+/* ==========================================================================
+   3. TABLET (768px to 1023px)
+   ========================================================================== */
+@media (max-width: 1023.98px) {
+    .top-bar {
+        display: none !important;
+    }
+
+    .hero-heading-exact {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+
+    .hero-interactive-3d-container {
+        min-height: 380px;
+        margin-top: 25px;
+    }
+
+    .hero-floating-glass-subtle {
+        padding: 6px 12px;
+        transform: scale(0.9);
+    }
+
+    .stat-pill-col {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(8, 43, 89, 0.08);
+        padding-bottom: 15px;
+    }
+
+    .stat-pill-col:nth-last-child(-n+2) {
+        border-bottom: none;
+    }
+
+    /* Process Timeline Tablet View */
+    .process-timeline-track {
+        display: none;
+    }
+
+    .process-step-node {
+        margin-bottom: 30px;
+    }
+
+    /* Trust Shield Split Layout */
+    .trust-shield-card {
+        padding: 30px;
+        margin-top: 30px;
+    }
+
+    /* Nav Dropdowns on Tablet */
+    .navbar-collapse {
+        background: #FFFFFF;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 15px 35px rgba(8, 43, 89, 0.12);
+        margin-top: 15px;
+    }
+}
+
+/* ==========================================================================
+   4. MOBILE (320px to 767px)
+   ========================================================================== */
+@media (max-width: 767.98px) {
+    /* Fluid Responsive Headings */
+    .hero-heading-exact {
+        font-size: 2rem;
+        line-height: 1.22;
+        text-align: center;
+    }
+
+    .hero-desc-exact {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .hero-pill-badge {
+        display: inline-block;
+        margin: 0 auto 16px auto;
+        font-size: 0.75rem;
+        padding: 6px 14px;
+    }
+
+    .hero-text-col {
+        text-align: center;
+    }
+
+    .hero-btn-group-exact {
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .btn-hero-primary-pill,
+    .btn-hero-outline-pill {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        padding: 13px 24px;
+    }
+
+    /* 3D Hero on Mobile */
+    .hero-interactive-3d-container {
+        min-height: 280px;
+        margin-top: 20px;
+    }
+
+    /* Keep background video completely clear on mobile */
+    .hero-floating-glass-subtle,
+    .hero-floating-glass-card {
+        display: none !important;
+    }
+
+    /* Statistics Bar */
+    .hero-stats-pill-inner {
+        padding: 20px 15px;
+        border-radius: 20px;
+    }
+
+    .stat-pill-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stat-pill-svg {
+        margin-bottom: 8px;
+    }
+
+    .stat-pill-val {
+        font-size: 1.85rem;
+    }
+
+    .stat-pill-title {
+        font-size: 0.85rem;
+    }
+
+    /* Why Choose 4 Cards */
+    .why-pill-card {
+        padding: 20px 14px;
+        min-height: 160px;
+    }
+
+    .why-pill-title {
+        font-size: 0.95rem;
+    }
+
+    /* Service Cards */
+    .service-card {
+        border-radius: 20px;
+    }
+
+    .service-img-wrapper {
+        height: 180px;
+    }
+
+    /* Timeline on Mobile: Clean vertical list */
+    .process-timeline-wrap {
+        padding: 10px 0;
+    }
+
+    .process-timeline-track {
+        display: none;
+    }
+
+    .process-step-node {
+        margin-bottom: 24px;
+        text-align: center;
+    }
+
+    .process-step-badge {
+        width: 60px;
+        height: 60px;
+        font-size: 1.25rem;
+        margin-bottom: 12px;
+    }
+
+    /* Testimonials & Swiper controls */
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none !important;
+    }
+
+    /* Footer adjustments */
+    .footer-cta-strip {
+        padding: 24px 20px;
+        text-align: center;
+    }
+
+    .footer-cta-title {
+        font-size: 1.35rem;
+    }
+
+    .site-footer {
+        padding-top: 50px;
+    }
+
+    .floating-whatsapp-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 52px;
+        height: 52px;
+        font-size: 1.5rem;
+    }
+
+    .btn-back-to-top {
+        bottom: 80px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+    }
+
+    /* Touch Friendly Tap Targets */
+    .nav-link, .btn, .accordion-button {
+        min-height: 44px;
+    }
+}

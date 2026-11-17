@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a2540" />
+      <stop offset="60%" stop-color="#0d3b66" />
+      <stop offset="100%" stop-color="#001a33" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7b00" />
+      <stop offset="100%" stop-color="#ff9900" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0066cc" />
+      <stop offset="100%" stop-color="#00a3ff" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.12)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0.04)" />
+    </linearGradient>
+    <pattern id="gridPat" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="600" fill="url(#bgGrad)"/>
+  <rect width="900" height="600" fill="url(#gridPat)"/>
+
+  <!-- Glowing Accent Orbs -->
+  <circle cx="200" cy="150" r="140" fill="#0066cc" opacity="0.25" filter="blur(40px)"/>
+  <circle cx="720" cy="450" r="160" fill="#ff7b00" opacity="0.18" filter="blur(40px)"/>
+
+  <!-- Architectural Facility Shapes -->
+  <g opacity="0.4" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none">
+    <!-- Building Silhouettes -->
+    <rect x="120" y="220" width="130" height="260" rx="4"/>
+    <line x1="145" y1="250" x2="165" y2="250"/>
+    <line x1="185" y1="250" x2="205" y2="250"/>
+    <line x1="145" y1="280" x2="165" y2="280"/>
+    <line x1="185" y1="280" x2="205" y2="280"/>
+    <line x1="145" y1="310" x2="165" y2="310"/>
+    <line x1="185" y1="310" x2="205" y2="310"/>
+    <line x1="145" y1="340" x2="165" y2="340"/>
+    <line x1="185" y1="340" x2="205" y2="340"/>
+    <line x1="145" y1="370" x2="165" y2="370"/>
+    <line x1="185" y1="370" x2="205" y2="370"/>
+
+    <rect x="280" y="160" width="170" height="320" rx="4"/>
+    <line x1="310" y1="190" x2="340" y2="190"/>
+    <line x1="360" y1="190" x2="390" y2="190"/>
+    <line x1="410" y1="190" x2="430" y2="190"/>
+    <line x1="310" y1="225" x2="340" y2="225"/>
+    <line x1="360" y1="225" x2="390" y2="225"/>
+    <line x1="410" y1="225" x2="430" y2="225"/>
+    <line x1="310" y1="260" x2="340" y2="260"/>
+    <line x1="360" y1="260" x2="390" y2="260"/>
+    <line x1="410" y1="260" x2="430" y2="260"/>
+    <line x1="310" y1="295" x2="340" y2="295"/>
+    <line x1="360" y1="295" x2="390" y2="295"/>
+    <line x1="410" y1="295" x2="430" y2="295"/>
+
+    <rect x="480" y="240" width="140" height="240" rx="4"/>
+  </g>
+
+  <!-- Central Technical Audit Inspection Card -->
+  <g transform="translate(480, 130)">
+    <rect width="320" height="340" rx="16" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+    
+    <!-- Header Icon -->
+    <circle cx="60" cy="65" r="30" fill="url(#blueGrad)"/>
+    <path d="M50 65 L57 72 L72 55" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+    <text x="105" y="58" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="19" fill="#ffffff">Facility Inspection</text>
+    <text x="105" y="78" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="13" fill="#ff9900">Engineering SLA Audit</text>
+
+    <!-- Checklist Items -->
+    <g transform="translate(35, 125)">
+      <!-- Item 1 -->
+      <circle cx="12" cy="12" r="10" fill="rgba(0,163,255,0.2)"/>
+      <path d="M8 12 L11 15 L16 9" stroke="#00a3ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <text x="32" y="16" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="14" fill="#ffffff">MEP Infrastructure Diagnostics</text>
+
+      <!-- Item 2 -->
+      <g transform="translate(0, 42)">
+        <circle cx="12" cy="12" r="10" fill="rgba(0,163,255,0.2)"/>
+        <path d="M8 12 L11 15 L16 9" stroke="#00a3ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <text x="32" y="16" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="14" fill="#ffffff">PSARA Safety &amp; Guard Protocols</text>
+      </g>
+
+      <!-- Item 3 -->
+      <g transform="translate(0, 84)">
+        <circle cx="12" cy="12" r="10" fill="rgba(0,163,255,0.2)"/>
+        <path d="M8 12 L11 15 L16 9" stroke="#00a3ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <text x="32" y="16" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="14" fill="#ffffff">HVAC &amp; Chiller Health Audit</text>
+      </g>
+
+      <!-- Item 4 -->
+      <g transform="translate(0, 126)">
+        <circle cx="12" cy="12" r="10" fill="rgba(0,163,255,0.2)"/>
+        <path d="M8 12 L11 15 L16 9" stroke="#00a3ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <text x="32" y="16" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="14" fill="#ffffff">Society Handover Certification</text>
+      </g>
+    </g>
+
+    <!-- Score Pill -->
+    <rect x="35" y="280" width="250" height="38" rx="8" fill="url(#accentGrad)"/>
+    <text x="160" y="304" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13.5" fill="#ffffff" text-anchor="middle">100% OPERATIONAL COMPLIANCE</text>
+  </g>
+
+  <!-- Primary Badge on bottom left -->
+  <g transform="translate(80, 390)">
+    <rect width="320" height="110" rx="14" fill="#0a2540" stroke="#0066cc" stroke-width="2"/>
+    <text x="25" y="42" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="24" fill="#ff9900">SYSTEQ India</text>
+    <text x="25" y="68" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="14" fill="#ffffff">Professional Facility Management</text>
+    <text x="25" y="90" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12" fill="rgba(255,255,255,0.7)">Civil &amp; Electro-Mechanical Engineering</text>
+  </g>
+</svg>
+

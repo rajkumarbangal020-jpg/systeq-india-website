@@ -1,0 +1,32 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# IDE & Editor Settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment & Credentials (NEVER COMMIT)
+.env
+.env.*
+*.key
+*.pem
+*.credentials
+ftp_credentials.*
+credentials.*
+secrets.*
+
+# Logs and Runtime Data
+*.log
+*.tmp
+*.temp
+
+# Local backups
+*.bak
+*.backup
+*~
+*.swp
