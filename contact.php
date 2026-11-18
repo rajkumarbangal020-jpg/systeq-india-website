@@ -130,6 +130,14 @@ $project_inquiry = $_GET['project_inquiry'] ?? '';
                     </div>
 
                     <form id="contactForm" class="needs-validation" novalidate>
+                        <!-- Web3Forms API Configuration (Access Key Placeholder - Replace with your key) -->
+                        <input type="hidden" name="access_key" id="web3formsAccessKey" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
+                        <input type="hidden" name="subject" value="New Facility Inquiry - SYSTEQ India Website">
+                        <input type="hidden" name="from_name" value="SYSTEQ India Web Portal">
+
+                        <!-- Anti-Spam Honeypot Field (Hidden from humans) -->
+                        <input type="checkbox" name="botcheck" class="d-none" style="display: none !important;">
+
                         <div class="row g-3">
                             <!-- Full Name -->
                             <div class="col-md-6">
@@ -198,20 +206,27 @@ $project_inquiry = $_GET['project_inquiry'] ?? '';
                                 <textarea class="form-control" id="contactMessage" name="message" rows="4" placeholder="Tell us about your property location, number of units/floors, current challenges, or specific audit needs..."><?= !empty($project_inquiry) ? 'Inquiry regarding scope similar to: ' . htmlspecialchars($project_inquiry) : '' ?></textarea>
                             </div>
 
-                            <!-- Frontend Demo Notice -->
-                            <div class="col-12">
-                                <div class="p-2 px-3 bg-light rounded-3 border small text-muted d-flex align-items-center">
-                                    <i class="fa-solid fa-circle-info text-accent me-2 fs-5"></i>
-                                    <span><strong>UI Demonstration:</strong> Submitting will demonstrate form validation and show an interactive summary modal. Data is not stored in a database.</span>
-                                </div>
+                            <!-- Dynamic Form Status Alert (Success / Error Messages) -->
+                            <div class="col-12" id="contactStatusWrap" style="display: none;">
+                                <div id="contactFormStatus" class="alert mb-0" role="alert"></div>
                             </div>
 
-                            <!-- Submit Button -->
+                            <!-- Submit & WhatsApp Action Buttons -->
                             <div class="col-12 mt-4">
-                                <button type="submit" class="btn btn-primary-pill w-100 py-3">
-                                    <i class="fa-solid fa-paper-plane me-2"></i>
-                                    <span>Submit Inquiry &amp; Request Audit</span>
-                                </button>
+                                <div class="row g-2">
+                                    <div class="col-sm-7 col-12">
+                                        <button type="submit" class="btn btn-primary-pill w-100 py-3" id="contactSubmitBtn">
+                                            <i class="fa-solid fa-paper-plane me-2" id="contactSubmitIcon"></i>
+                                            <span id="contactSubmitText">Submit Inquiry &amp; Request Audit</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-5 col-12">
+                                        <a href="<?= get_whatsapp_url() ?>" target="_blank" class="btn btn-outline-success w-100 py-3 rounded-pill fw-semibold d-flex align-items-center justify-content-center text-nowrap" id="contactWhatsAppBtn" aria-label="Inquire via WhatsApp">
+                                            <i class="fa-brands fa-whatsapp fs-5 me-2"></i>
+                                            <span>Chat on WhatsApp</span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>

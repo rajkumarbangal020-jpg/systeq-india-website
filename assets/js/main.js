@@ -134,55 +134,173 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Frontend Interactive Contact & Quote Form UI Demonstration
+    // 5. Contact & Quote Form Handling (Web3Forms API + Validation + Spam Protection + Loading State + WhatsApp)
     const formsToHandle = ['#contactForm', '#quoteForm', '#heroQuickQuoteForm'];
+
+    // Dynamic WhatsApp message update based on input
+    const contactWhatsAppBtn = document.getElementById('contactWhatsAppBtn');
+    if (contactWhatsAppBtn) {
+        const updateWhatsAppMsg = () => {
+            const name = document.getElementById('contactFullName')?.value?.trim() || '';
+            const service = document.getElementById('contactService')?.value || '';
+            let msg = 'Hello SYSTEQ India, I would like to request information about facility management services.';
+            if (name || service) {
+                msg = `Hello SYSTEQ India, my name is ${name || 'a visitor'}. I am inquiring about ${service || 'facility management services'}.`;
+            }
+            contactWhatsAppBtn.href = `https://wa.me/917355275805?text=${encodeURIComponent(msg)}`;
+        };
+        document.getElementById('contactFullName')?.addEventListener('input', updateWhatsAppMsg);
+        document.getElementById('contactService')?.addEventListener('change', updateWhatsAppMsg);
+    }
 
     formsToHandle.forEach(selector => {
         const formEl = document.querySelector(selector);
         if (formEl) {
-            formEl.addEventListener('submit', function (e) {
+            formEl.addEventListener('submit', async function (e) {
                 e.preventDefault();
 
-                // Simple HTML5 validation check
+                // 1. Anti-Spam Honeypot Verification
+                const botField = this.querySelector('input[name="botcheck"]');
+                if (botField && botField.checked) {
+                    console.warn('Spam submission detected by botcheck honeypot.');
+                    return;
+                }
+
+                // 2. HTML5 Validation Check
                 if (!this.checkValidity()) {
                     e.stopPropagation();
                     this.classList.add('was-validated');
                     return;
                 }
 
-                // Extract entered values for demo modal presentation
+                // UI Elements for Loading and Status
+                const submitBtn = this.querySelector('#contactSubmitBtn') || this.querySelector('button[type="submit"]');
+                const submitIcon = this.querySelector('#contactSubmitIcon');
+                const submitText = this.querySelector('#contactSubmitText');
+                const statusWrap = document.getElementById('contactStatusWrap');
+                const statusAlert = document.getElementById('contactFormStatus');
+
+                const origIconClass = submitIcon ? submitIcon.className : '';
+                const origBtnText = submitText ? submitText.textContent : (submitBtn ? submitBtn.textContent : '');
+
+                // 3. Set Loading State
+                if (submitBtn) submitBtn.disabled = true;
+                if (submitIcon) submitIcon.className = 'fa-solid fa-spinner fa-spin me-2';
+                if (submitText) submitText.textContent = 'Submitting Inquiry...';
+                if (statusWrap) statusWrap.style.display = 'none';
+
+                // Extract form values
                 const fullName = this.querySelector('[name="name"]')?.value || 'Guest';
                 const email = this.querySelector('[name="email"]')?.value || 'Not provided';
                 const phone = this.querySelector('[name="phone"]')?.value || 'Not provided';
                 const service = this.querySelector('[name="service"]')?.value || 'General Facility Inquiry';
                 const propertyType = this.querySelector('[name="property_type"]')?.value || 'Standard Facility';
                 const message = this.querySelector('[name="message"]')?.value || 'No additional message entered.';
+                const accessKey = this.querySelector('[name="access_key"]')?.value?.trim() || '';
 
-                // Populate Demo Summary List in Modal
-                const summaryList = document.getElementById('demoSummaryList');
-                if (summaryList) {
-                    summaryList.innerHTML = `
-                        <li class="mb-1"><strong>Client Name:</strong> ${escapeHtml(fullName)}</li>
-                        <li class="mb-1"><strong>Contact Phone:</strong> ${escapeHtml(phone)}</li>
-                        <li class="mb-1"><strong>Email Address:</strong> ${escapeHtml(email)}</li>
-                        <li class="mb-1"><strong>Required Service:</strong> ${escapeHtml(service)}</li>
-                        <li class="mb-1"><strong>Property Type:</strong> ${escapeHtml(propertyType)}</li>
-                        <li class="mb-1"><strong>Message Notes:</strong> <span class="text-muted">${escapeHtml(message)}</span></li>
-                    `;
+                try {
+                    // 4. Check for Web3Forms Access Key
+                    const isPlaceholder = !accessKey || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY_HERE';
+
+                    if (isPlaceholder) {
+                        // Demo Mode / Placeholder Notice
+                        if (statusAlert && statusWrap) {
+                            statusAlert.className = 'alert alert-info py-3 px-4 rounded-3 border-0 shadow-sm';
+                            statusAlert.innerHTML = `
+                                <div class="d-flex align-items-start">
+                                    <i class="fa-solid fa-circle-info text-primary fs-4 me-3 mt-1"></i>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">Inquiry Received (Demo Mode)</h6>
+                                        <p class="mb-2 small text-muted">Thank you, <strong>${escapeHtml(fullName)}</strong>. To send submissions to an actual email inbox, configure your free API key from <a href="https://web3forms.com" target="_blank" class="fw-bold text-primary">Web3Forms.com</a>.</p>
+                                        <div class="mt-2 pt-2 border-top small">
+                                            <span>Immediate inquiry? </span>
+                                            <a href="https://wa.me/917355275805?text=${encodeURIComponent('Hello SYSTEQ India, I just submitted an inquiry for: ' + service)}" target="_blank" class="text-success fw-bold me-3"><i class="fa-brands fa-whatsapp me-1"></i>Chat on WhatsApp</a>
+                                            <a href="tel:+917355275805" class="text-primary fw-bold"><i class="fa-solid fa-phone me-1"></i>+91 73552 75805</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            statusWrap.style.display = 'block';
+                        }
+
+                        // Also populate and show modal for UI Demonstration
+                        const summaryList = document.getElementById('demoSummaryList');
+                        if (summaryList) {
+                            summaryList.innerHTML = `
+                                <li class="mb-1"><strong>Client Name:</strong> ${escapeHtml(fullName)}</li>
+                                <li class="mb-1"><strong>Contact Phone:</strong> ${escapeHtml(phone)}</li>
+                                <li class="mb-1"><strong>Email Address:</strong> ${escapeHtml(email)}</li>
+                                <li class="mb-1"><strong>Required Service:</strong> ${escapeHtml(service)}</li>
+                                <li class="mb-1"><strong>Property Type:</strong> ${escapeHtml(propertyType)}</li>
+                                <li class="mb-1"><strong>Message Notes:</strong> <span class="text-muted">${escapeHtml(message)}</span></li>
+                            `;
+                        }
+                        const demoModalEl = document.getElementById('demoSubmissionModal');
+                        if (demoModalEl && typeof bootstrap !== 'undefined') {
+                            const modal = new bootstrap.Modal(demoModalEl);
+                            modal.show();
+                        }
+                    } else {
+                        // Live Web3Forms Submission via Fetch API
+                        const formData = new FormData(this);
+                        const response = await fetch('https://api.web3forms.com/submit', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const data = await response.json();
+
+                        if (data.success) {
+                            if (statusAlert && statusWrap) {
+                                statusAlert.className = 'alert alert-success py-3 px-4 rounded-3 border-0 shadow-sm';
+                                statusAlert.innerHTML = `
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa-solid fa-circle-check text-success fs-3 me-3"></i>
+                                        <div>
+                                            <h6 class="fw-bold mb-1">Inquiry Sent Successfully!</h6>
+                                            <p class="mb-0 small">Thank you, <strong>${escapeHtml(fullName)}</strong>. Our facility engineering desk has received your request and will contact you within 24 hours.</p>
+                                        </div>
+                                    </div>
+                                `;
+                                statusWrap.style.display = 'block';
+                            }
+                            this.reset();
+                        } else {
+                            throw new Error(data.message || 'Unable to submit inquiry at this time.');
+                        }
+                    }
+
+                    // Reset form state after successful handling
+                    if (isPlaceholder) {
+                        this.reset();
+                    }
+                    this.classList.remove('was-validated');
+
+                } catch (err) {
+                    console.error('Contact Form Error:', err);
+                    if (statusAlert && statusWrap) {
+                        statusAlert.className = 'alert alert-danger py-3 px-4 rounded-3 border-0 shadow-sm';
+                        statusAlert.innerHTML = `
+                            <div class="d-flex align-items-start">
+                                <i class="fa-solid fa-circle-exclamation text-danger fs-4 me-3 mt-1"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Submission Failed</h6>
+                                    <p class="mb-2 small">${escapeHtml(err.message || 'Network error occurred.')}</p>
+                                    <div class="small">
+                                        <span>Please reach us directly at: </span>
+                                        <a href="tel:+917355275805" class="fw-bold text-dark me-2">+91 73552 75805</a> |
+                                        <a href="mailto:sales@systeqindia.com" class="fw-bold text-dark ms-2">sales@systeqindia.com</a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        statusWrap.style.display = 'block';
+                    }
+                } finally {
+                    // Restore button state
+                    if (submitBtn) submitBtn.disabled = false;
+                    if (submitIcon) submitIcon.className = origIconClass || 'fa-solid fa-paper-plane me-2';
+                    if (submitText) submitText.textContent = origBtnText || 'Submit Inquiry & Request Audit';
                 }
-
-                // Show Bootstrap Modal
-                const demoModalEl = document.getElementById('demoSubmissionModal');
-                if (demoModalEl && typeof bootstrap !== 'undefined') {
-                    const modal = new bootstrap.Modal(demoModalEl);
-                    modal.show();
-                } else {
-                    alert(`Inquiry Received (Demo)!\nThank you, ${fullName}. For real direct inquiries, contact +91 73552 75805.`);
-                }
-
-                // Reset form state
-                this.reset();
-                this.classList.remove('was-validated');
             });
         }
     });
