@@ -25,6 +25,9 @@ secrets.*
 *.tmp
 *.temp
 
+# Build Output
+dist/
+
 # Local backups
 *.bak
 *.backup
