@@ -10,6 +10,7 @@ jobs:
   web-deploy:
     name: Deploy to Server via FTP
     runs-on: ubuntu-latest
+    if: ${{ secrets.FTP_SERVER != '' }}
     steps:
       - name: 🚚 Checkout Repository
         uses: actions/checkout@v4
