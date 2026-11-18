@@ -4,7 +4,7 @@ echo   SYSTEQ India - Push to GitHub Repository
 echo   Target: rajkumarbangal020-jpg/systeq-india-website
 echo ===================================================
 echo.
-git push -u origin main --force
+git push -u origin main
 echo.
 echo ===================================================
 if %ERRORLEVEL% EQU 0 (
